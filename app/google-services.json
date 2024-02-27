@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "281088753018",
+    "project_id": "dialysis-55e67",
+    "storage_bucket": "dialysis-55e67.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:281088753018:android:919754215db2a5a71baac3",
+        "android_client_info": {
+          "package_name": "com.example.test_quiz"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrb7LSEUBUpRKSA6KYgee4rjt3hrvek4U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

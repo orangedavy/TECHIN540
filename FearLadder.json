@@ -1,0 +1,64 @@
+{
+  "Questions" : [{
+    "options" : [{
+      "description": "What is your age?",
+       "type": 0,
+       "options": [
+        "Below 25 years old",
+        "26 to 45 years old",
+        "45 to 65 years old",
+        "Over 66 years olds"]
+        }, {
+        "description": "How are you related to cannulation?",
+        "type": 0,
+        "options" : [
+        "I’m a home hemodialysis patient waiting for training",
+        "I’m a home hemodialysis patient currently in training",
+        "I’m a caregiver and have to cannulate a patient",
+        "I have some other disease that requires needle-insertion",
+        "I’m a home hemodialysis patient doing cannulation"]
+         }
+      ],
+    "question" : "Tell me your information!"
+  },{
+    "options" :[{
+      "description" : "The next step is to make a plan to gradually face your fears. That plan is called a fear ladder. Watch the video to learn how to build a fear ladder. Then use the fear ladder library to pick items to put on your ladder.",
+      "type": 10
+    }],
+    "question" : "Build your fear ladder"
+  },{
+    "options" : [{
+      "description" : "The fear ladder library lists activities you can use to face your fears, organized by the type of situation, thought, or feeling that sets off anxiety for cannulation. Each activity you select will be added to your treatment plan.",
+      "type":10
+    },{
+      "description" : "Things",
+      "type": 1,
+      "options" : [
+        "Needles",
+        "Blood",
+        "Medical equipments",
+        "Medical staff",
+        "Vascular access"]
+    },{
+      "description" : "Thoughts",
+      "type": 1,
+      "options" : [
+        "Misplacing the needles",
+        "Needles slipping out",
+        "Causing infections",
+        "Causing injuries",
+        "Being dependent on others",
+        "Unfamiliar with procedure"]
+    },{
+      "description" :  "Feelings",
+      "type": 1,
+      "options" : [
+        "Pain in placing needles",
+        "Physical sensation of needles",
+        "Stress about caregiving responsibilities"]
+    }],
+    "question" : "Build your fear ladder"
+  }
+],
+  "Time" : 3000
+}
