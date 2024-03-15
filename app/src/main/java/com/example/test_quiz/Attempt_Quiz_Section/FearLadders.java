@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -51,6 +52,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class FearLadders extends AppCompatActivity {
     private FirebaseDatabase database;
@@ -68,11 +71,16 @@ public class FearLadders extends AppCompatActivity {
 
     private Integer heartrate;
 
+    private Long starttime;
+
+    private Long endtime;
+
     ArrayList<Test> tests=new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        starttime = System.currentTimeMillis();
         setContentView(R.layout.activity_tests);
         Toolbar toolbar =  findViewById(R.id.toolbar);
         toolbar.setTitleTextColor(getResources().getColor(android.R.color.black));
@@ -185,7 +193,8 @@ public class FearLadders extends AppCompatActivity {
     private void fetchRestingHeartRate(final String accessToken) {
 
         RequestQueue queue = Volley.newRequestQueue(this); // 'this' is Context
-        String url = "https://api.fitbit.com/1/user/-/activities/heart/date/2024-02-26/1d/1min.json";
+        String yesterday = LocalDate.now().minusDays(1).format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        String url = "https://api.fitbit.com/1/user/-/activities/heart/date/"+yesterday+"/1d/1min.json";
 
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest
                 (Request.Method.GET, url, null, new Response.Listener<JSONObject>() {
@@ -218,6 +227,7 @@ public class FearLadders extends AppCompatActivity {
                             });
                         } catch (Exception e) {
                             e.printStackTrace();
+                            Toast.makeText(getApplicationContext(), "You need to sync your fitbit! Try again!", Toast.LENGTH_SHORT).show();
                             // 处理异常
                         }
                     }
@@ -276,11 +286,11 @@ public class FearLadders extends AppCompatActivity {
                             }
                             t.rank = i;
                             if(i < current){
-                                t.setColor(0xFF00FF00); // Green for passed
+                                t.setColor(0xC090EE90); // Green for passed
                             } else if (i == current) {
-                                t.setColor(0xFF0000FF); // Blue for current
+                                t.setColor(0xC0ADD8E6); // Blue for current
                             } else{
-                                t.setColor(0xFFFF0000); // Red for future
+                                t.setColor(0xC0FFA500); // Red for future
                             }
                             t.setQuestions(ques);
                             t.setHeartrate(heart_rate);
@@ -293,6 +303,8 @@ public class FearLadders extends AppCompatActivity {
                 avLoadingIndicatorView.setVisibility(View.GONE);
                 avLoadingIndicatorView.hide();
                 Log.e("The read success: " ,"su"+tests.size());
+                endtime = System.currentTimeMillis();
+                // Toast.makeText(getApplicationContext(), "Time is " + (endtime-starttime), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -329,7 +341,7 @@ public class FearLadders extends AppCompatActivity {
                     .setText(dataList.get(position).getName());
 
             ((Button)listItem.findViewById(R.id.item_button)).setText("Attempt");
-            if(color == 0xFF0000FF){
+            if(color == 0xC0ADD8E6){
                 ((Button)listItem.findViewById(R.id.item_button)).setEnabled(true);
             }
             else{
